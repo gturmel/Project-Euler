@@ -16,5 +16,6 @@ var sumFib = 0;
 
 for(num = 11; num = evenFibonacci.length; num--) {
     sumFib = sumFib + evenFibonacci.pop();
-    console.log(sumFib);
 };
+
+console.log(sumFib);
