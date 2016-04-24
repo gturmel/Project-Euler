@@ -40,3 +40,18 @@ console.log(squareSum);
 diff = squareSum - sumSquare;
 
 console.log(diff);
+
+//Now, we don't really need to have two for loops, when they are covering the same range. So to DRY this up, we'll merge the two loops together.
+
+for(var num = 0; num <=10; num++){
+   var square = num * num;
+   sumSquare = sumSquare + square;
+   sum = sum + num;
+}
+var squareSum = sum * sum;
+
+diff = squareSum - sumSquare;
+
+console.log(diff);
+
+//This chunk, plus the variable declaration, is all that we'll need to find the differnce in the sum of the squares and the square of the sums for any range of numbers that we're looking for.
