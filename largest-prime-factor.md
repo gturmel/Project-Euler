@@ -47,7 +47,7 @@ function primeFactors(num){
 		while (num % i === 0){
 ```
 So, this is the backbone of our function. We've got it defined as primeFactors, so it doesn't just run automatically. Then we start our **for** loop at 2. Everything gets divided by 1, so it's not relevant to this issue.
-The **While** loop is the really interesting part. Since the number that we're passing in is divisible by 2 many times, and we want to be sure that we capture all of those 2's, the **While** loop is the right choice.  It's going to take the number that we're dividing, divide it by our variable prime i, and continue to do so until `num % i` returns anything but 0. At that point, the **while** loop resolves, and the **for** loop adds one to i, and sends i back to the **while** loop.
+The **While** loop is the really interesting part. Since the number that we're passing in is divisible by 2 many times, and we want to be sure that we capture all of those 2's, the **While** loop is the right choice.  It's going to take the number that we're dividing, divide it by our variable prime i, and continue to do so until `num % i` returns anything but 0. At that point, the **while** loop resolves, and the **for** loop adds one to i, and sends i back to the **while** loop. This combination of the **for** loop and the **while** is where the magic happens. These two loops are what's ensuring that only Primes are dividing our number. Since it starts at 2 and divides until the answer is odd, no other even number will divide num. Then 3 has a turn, and no multiple of 3 will divide num. 
 
 ```         
 			factors.push(i);
