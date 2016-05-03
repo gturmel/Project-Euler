@@ -25,6 +25,9 @@
 //
 // What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
 
+/*
+We've got this huge chunk of numbers. Lets make this a 2 dimensional array, and we'll be able to navigate around the array from there.
+*/
 
 var bigArray = [
 [08, 02, 22, 97, 38, 15, 00, 40, 00, 75, 04, 05, 07, 78, 52, 12, 50, 77, 91, 08],
@@ -49,7 +52,82 @@ var bigArray = [
 [01, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 01, 89, 19, 67, 48],
 ];
 
+
+/*
+Now that we've got all of our numbers into an array, we need to figure out what we need to do with them.
+Step 1:
+   - we need to get chunks of numbers
+Step 2:
+   - multiply those numbers
+Step 3:
+   - Check and see what the product is, and if it's greater than our max product number
+Step 4:
+   - if the product is greater than our previous max, set that product as our new max number
+*/
+
+/*
+Lets go ahead and declare variables. Here's max, and we've already got our array of numbers.
+*/
 var max = 0;
+
+/*
+Our starting for loop. Since we're going to be working with a 2-D array, we're going to want to use a loop inside of a loop. Since we need 4 numbers, we're going to go from the start (var = 0) to 4 less than the length of the array. We'll do this for both of our for loops.
+Now that we've got it built, lets work through the horizontal Field first.
+We want to stay in the same array, so with ```bigArray[i][num]```, i doesn't change, while we'll need to have several different numbers for num (num, num+1, num+2, num+3)
+A quick if statement to see if the product is greater than the max, and to set max as the product if so, and we're good with the horizontal declarations.
+*/
+
+for(var i = 0; i <= bigArray.length-4; i++){
+	for(var num = 0; num <= bigArray.length-4; num++){
+		var product = bigArray[i][num]*bigArray[i][num+1]*bigArray[i][num+2]*bigArray[i][num+3];
+		if(product > max){
+			max = product;
+	}
+};
+
+/*
+Now to go vertical. Same thought as with the horizontal loop: we'll add to i, so that we move down the 2D Array, and leave the num the same, so we grab the same column position
+*/
+
+for(var i = 0; i <= bigArray.length-4; i++){
+	for(var num = 0; num <= bigArray.length-4; num++){
+      var product = bigArray[i][num]*bigArray[i+1][num]*bigArray[i+2][num]*bigArray[i+3][num];
+		if(product > max){
+			max = product;
+		}
+	}
+};
+
+/*
+For the diagonals. For the top-left to bottom-right diagonal, we just need to add 1 to both i and num for several iterations.
+*/
+
+for(var i = 0; i <= bigArray.length-4; i++){
+	for(var num = 0; num <= bigArray.length-4; num++){
+		var product = bigArray[i][num]*bigArray[i+1][num+1]*bigArray[i+2][num+2]*bigArray[i+3][num+3];
+		if(product > max){
+			max = product;
+		}
+	}
+};
+
+/*
+For the top-right to bottom-left diagonal, we need to think a bit about where we are in the array and what we're going to be doing. So on the vertical axis, we still want to move down the array, so we'll be adding one to i. On the horizontal axis, we want to decrease where we are, so we'll be subtracting one.
+*/
+
+for(var i = 0; i <= bigArray.length-4; i++){
+	for(var num = 0; num <= bigArray.length-4; num++){
+		var product = bigArray[i][num]*bigArray[i+1][num-1]*bigArray[i+2][num-2]*bigArray[i+3][num-3];
+		if(product > max){
+			max = product;
+		}
+	}
+};
+
+/*
+This is loose and we're repeating outselves a lot (the loops are covering the same range every time), so we can condense them a bit. We can put each of our product calcuations into one loop, change the variable name, and then use an if-else statement tree to check for the max number. 
+*/
+
 
 for(var i = 0; i <= bigArray.length-4; i++){
 	for(var num = 0; num <= bigArray.length-4; num++){
@@ -68,32 +146,4 @@ for(var i = 0; i <= bigArray.length-4; i++){
 		}
 	}
 };
-
-// for(var i = 0; i <= bigArray.length-4; i++){
-// 	for(var num = 0; num <= bigArray.length-4; num++){
-
-// 		if(product > max){
-// 			max = product;
-// 		}
-// 	}
-// };
-
-// for(var i = 0; i <= bigArray.length-4; i++){
-// 	for(var num = 0; num <= bigArray.length-4; num++){
-// 		var product3 = bigArray[i][num]*bigArray[i+1][num+1]*bigArray[i+2][num+2]*bigArray[i+3][num+3];
-// 		if(product > max){
-// 			max = product;
-// 		}
-// 	}
-// };
-
-// for(var i = 0; i <= bigArray.length-4; i++){
-// 	for(var num = 0; num <= bigArray.length-4; num++){
-// 		var product4 = bigArray[i][num]*bigArray[i+1][num-1]*bigArray[i+2][num-2]*bigArray[i+3][num-3];
-// 		if(product > max){
-// 			max = product;
-// 		}
-// 	}
-// };
-
 console.log(max);
