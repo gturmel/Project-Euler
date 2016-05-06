@@ -118,3 +118,130 @@ for(var num = 0; num <= 20; num++){
 };
 
 console.log(finalArray);
+
+// return will exit the little array. maybe the whole thing?
+
+
+var arr = [];
+var tempArray = [];
+var finalArray = [];
+
+function compareNumbers(a, b) {
+  return a - b;
+};
+var lcm = function(number){
+	for(var num = 0; num <= number; num++){
+		var target = num;
+		for(var i = 2; i <= target; i++){
+			while(target % i === 0){
+				target = target / i;
+				arr.push(i);
+			}
+		}
+		if(arr[0] === 2 && arr.length === 1){
+			finalArray.push(arr[0])
+			finalArray.sort(compareNumbers);
+		} else {
+			arr.sort(compareNumbers);
+			finalArray.sort(compareNumbers);
+			for(var z = 0; z < finalArray.length; z++){
+				console.log(arr + ' arr');
+				console.log(finalArray + ' fin')
+				// console.log(arr.length);
+//clearly the problem is that if there are new primes that aren't big, it's going to bomb.
+				if(arr[arr.length-1] === finalArray[z]){
+					console.log('just checking')
+				} else {
+					// console.log('not the same');
+					finalArray.splice(z, 0, arr[arr.length-1]);
+					// console.log(arr + ' arr')
+					// console.log(finalArray + ' final array')
+					finalArray.sort(compareNumbers);
+					arr = [];
+
+					break
+				}
+			}
+		}
+
+	};
+}
+lcm(20);
+
+console.log(finalArray);
+
+//at this point, I realized that we needed to keep advancing the index of the final array that we're searching with each found variable. we'll just pop a new one in after we've searched the whole array. If we find a match, we'll remove that element from the arr, advance the index of the search through the final Array, and go again. In this way, we'll finally look for each number in the arr in the finalArray separately.
+
+var arr = [];
+var tempArray = [];
+var finalArray = [];
+
+function compareNumbers(a, b) {
+  return a - b;
+};
+var lcm = function(number){
+	for(var num = 0; num <= number; num++){
+		var target = num;
+		for(var i = 2; i <= target; i++){
+			while(target % i === 0){
+				target = target / i;
+				arr.push(i);
+			}
+		}
+		if(arr[0] === 2 && arr.length === 1){
+			finalArray.push(arr[0])
+			console.log('start only')
+		} else {
+		for(var i = 0; i < finalArray.length; i++){
+			if(arr[0] === finalArray[i]){
+				i = finalArray.indexOf(finalArray[i]+1);
+				finalArray.sort(compareNumbers);
+			} else {
+				finalArray.splice(finalArray[i], 0, arr[0])
+				finalArray.sort(compareNumbers);
+
+			}
+		}
+		finalArray.sort(compareNumbers);
+	}
+
+	};
+}
+lcm(10);
+
+console.log(finalArray);
+
+
+//the following gets all the singleton primes
+//now, for an else statement
+
+var arr = [];
+var tempArray = [];
+var finalArray = [];
+
+function compareNumbers(a, b) {
+  return a - b;
+};
+var lcm = function(number){
+	for(var num = 0; num <= number; num++){
+		var target = num;
+		for(var i = 2; i <= target; i++){
+			while(target % i === 0){
+				target = target / i;
+				arr.push(i);
+			};
+		};
+		if(arr.length === 1){
+			finalArray.push(arr[0]);
+		}
+		arr = [];
+	};
+};
+
+
+
+lcm(10);
+
+console.log(finalArray);
+
+// 	finalArray.splice(finalArray[i], 0, arr[0]);
