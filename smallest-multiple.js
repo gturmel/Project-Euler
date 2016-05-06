@@ -71,3 +71,50 @@ console.log(finalArray);
 
 //I realized that my temp array was just booting the same problem down the line, so I cut it out and went back to just using an arr for the primes and the final array.
 //I need to split each array into a group of primes, and the concatenate the longest prime factor groups together. Is this weird? Yes. Yes it is. is this smart? That's a better question.
+
+//this loop breaks up each iteration of the array, so that we can figure out how many of each number we're going to have.
+//this is comparing the length and positions within those. That's a problem, cause arr.length isn't a great target, cause it only adds a few numbers. It's always going to be really small, hence the need to look through the entirety of the final Array.
+
+// ok, so this is the deal. if arr.length === 1, it's a prime, and it needs to go in
+// else, I need to look for the special number. I need a subset of the final array for each different number in the array
+// The prime adding isn't going to work that well, because a good robust function is going to add the number already.
+// so now what?
+// ok, so at this point I know I need to work through the length of the final array. but putting that in the for loop as the limit isn't going to work, because it's initial length is 0. I dont' really want to give it values - that's the job of the program, not me. No magic numbers!
+for(var i = 0; i <= num; i++){
+   if(arr[i] !== finalArray[i] && typeof arr[i] === 'number'){
+      finalArray.splice(i, 0, arr[i]);
+      finalArray.sort(compareNumbers);
+      // console.log(arr + ' arr');
+      // console.log(finalArray + ' final');
+//empties out the array for the next prime factor set
+      arr = [];
+   }
+}
+
+
+var arr = [];
+var tempArray = [];
+var finalArray = [];
+
+function compareNumbers(a, b) {
+  return a - b;
+};
+
+for(var num = 0; num <= 20; num++){
+	var target = num;
+	for(var i = 2; i <= target; i++){
+		while(target % i === 0){
+			target = target / i;
+			arr.push(i);
+		}
+	}
+	if(arr.length === 1){
+		finalArray.push(arr[0])
+	};
+// iterate over the final array.
+// if the value at the location of arr and finalArr are not equivalent, splice in the arr value at that index.
+// there should only be one new prime in arr, because we're starting at the bottom and working our way through the primes.
+	arr = [];
+};
+
+console.log(finalArray);
