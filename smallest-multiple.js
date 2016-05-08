@@ -233,6 +233,13 @@ var lcm = function(number){
 		};
 		if(arr.length === 1){
 			finalArray.push(arr[0]);
+		} else if(arr.length > 1){
+				for(var z = 0; z <= finalArray.length; z++){
+				while(arr[0] === finalArray[z]){
+					arr.shift();
+					//this seems to crash pretty hard.
+				}
+			}
 		}
 		arr = [];
 	};
@@ -245,3 +252,7 @@ lcm(10);
 console.log(finalArray);
 
 // 	finalArray.splice(finalArray[i], 0, arr[0]);
+
+// man, this is going to be really obvious when I'm done.
+
+//
