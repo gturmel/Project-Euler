@@ -84,7 +84,6 @@ function lcm(r ,b){
    } else {
       	return (r / gcd(r,b)) * b;
    }
-
 }
 
 // lcm(7, 10);

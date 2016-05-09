@@ -241,9 +241,7 @@ var lcm = function(number){
 				}
 			}
 		}
-		arr = [];
-	};
-};
+
 
 
 
@@ -255,4 +253,9 @@ console.log(finalArray);
 
 // man, this is going to be really obvious when I'm done.
 
-//
+// Ok, I'm throwing in the towel. I spent wayyyy too much time on this problem, and for not a very good reason. I want this style of solution to work, and I'm going to keep working on getting an array-based solution to work, but for now, I'm going to pivot to Wikipedia.
+//This is the new plan: Using both the information on this page for Least Common Multiple (https://en.wikipedia.org/wiki/Least_common_multiple#Computing_the_least_common_multiple), and this page for Greatest Common Divisor (https://en.wikipedia.org/wiki/Euclidean_algorithm), I'm going to build several functions.
+//What will I need for this problem? A function GCD and a function LCM.
+//Lets walk through what our function will need to do.
+//1. Take a start and
+//Function GCD: needs to happen first.
